@@ -1,0 +1,42 @@
+[
+	{
+		"file": "C:\\Users\\ADMIN\\Documents\\Program Projects\\UE5_Projects\\AnnoChallenge\\Source\\AnnoChallenge\\AnnoChallenge.Build.cs",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX64\\x64\\cl.exe",
+			"@C:\\Users\\ADMIN\\Documents\\Program Projects\\UE5_Projects\\AnnoChallenge\\.vscode\\compileCommands_Default\\AnnoChallenge.255.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ADMIN\\Documents\\Program Projects\\UE5_Projects\\AnnoChallenge\\Source\\AnnoChallenge\\AnnoChallenge.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX64\\x64\\cl.exe",
+			"@C:\\Users\\ADMIN\\Documents\\Program Projects\\UE5_Projects\\AnnoChallenge\\.vscode\\compileCommands_Default\\AnnoChallenge.255.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ADMIN\\Documents\\Program Projects\\UE5_Projects\\AnnoChallenge\\Source\\AnnoChallenge\\AnnoChallenge.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX64\\x64\\cl.exe",
+			"@C:\\Users\\ADMIN\\Documents\\Program Projects\\UE5_Projects\\AnnoChallenge\\.vscode\\compileCommands_Default\\AnnoChallenge.255.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ADMIN\\Documents\\Program Projects\\UE5_Projects\\AnnoChallenge\\Source\\AnnoChallenge\\AnnoChallengeGameModeBase.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX64\\x64\\cl.exe",
+			"@C:\\Users\\ADMIN\\Documents\\Program Projects\\UE5_Projects\\AnnoChallenge\\.vscode\\compileCommands_Default\\AnnoChallenge.255.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\ADMIN\\Documents\\Program Projects\\UE5_Projects\\AnnoChallenge\\Source\\AnnoChallenge\\AnnoChallengeGameModeBase.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.34.31933\\bin\\HostX64\\x64\\cl.exe",
+			"@C:\\Users\\ADMIN\\Documents\\Program Projects\\UE5_Projects\\AnnoChallenge\\.vscode\\compileCommands_Default\\AnnoChallenge.255.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.1\\Engine\\Source"
+	}
+]
