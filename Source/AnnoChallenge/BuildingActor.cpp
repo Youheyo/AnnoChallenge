@@ -41,7 +41,7 @@ void ABuildingActor::callVehicle(int32 matId, int32 &amount)
 		
 		for(int i = 0; i < VehiclesToFind.Num(); i++){
 			vehicleActor = Cast<AVehicleActor>(VehiclesToFind[i]->GetComponentByClass(AVehicleActor::StaticClass()));
-			if(!vehicleActor->isDelivering){
+			if(vehicleActor != NULL && !vehicleActor->isDelivering){
 				break;
 			}
 		}
@@ -57,6 +57,6 @@ void ABuildingActor::callVehicle(int32 matId, int32 &amount)
 void ABuildingActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if(!isProcessing) processMaterial(DeltaTime);
+	if(isProcessing) processMaterial(DeltaTime);
 }
 

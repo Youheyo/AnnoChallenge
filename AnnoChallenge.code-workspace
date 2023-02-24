@@ -16,7 +16,8 @@
 			"xstring": "cpp",
 			"string": "cpp",
 			"iosfwd": "cpp",
-			"*.ipp": "cpp"
+			"*.ipp": "cpp",
+			"*.rh": "cpp"
 		}
 	},
 	"extensions": {

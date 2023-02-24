@@ -25,6 +25,7 @@ void ACoalMineActor::processMaterial(float DeltaTime)
 	if(processProgress >= processDuration){
 		processProgress = 0;
 		coalHeld++;
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Orange, FString::Printf(TEXT("Coal Held : %d"), coalHeld));
 		isProcessing = false;
 	}
 }
@@ -32,7 +33,8 @@ void ACoalMineActor::processMaterial(float DeltaTime)
 // Called every frame
 void ACoalMineActor::Tick(float DeltaTime)
 {
-	if(coalHeld < maxInputMatsHeld && !isProcessing) isProcessing = false;
+	if(coalHeld < maxInputMatsHeld && !isProcessing) isProcessing = true;
+
 	Super::Tick(DeltaTime);
 
 	if(coalHeld > 0) callVehicle(COAL_MATERIAL, coalHeld);
