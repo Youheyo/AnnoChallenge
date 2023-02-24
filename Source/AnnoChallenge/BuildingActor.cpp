@@ -53,9 +53,9 @@ void ABuildingActor::callVehicle(int32 matId, int32 &amount)
 		//Teleports the available vehicle to the calling building
 		if(vehicleActor != NULL){
 
-			vehicleActor->StartDeliveryState(TargetBuilding, matId, amount);
 			UE_LOG(LogTemp, Display, TEXT("%s now holds %d materials"), *this->GetName(), amount);
 			vehicleActor->SetActorLocation(this->GetActorLocation());
+			vehicleActor->StartDeliveryState(TargetBuilding, matId, amount);
 		}
 }
 

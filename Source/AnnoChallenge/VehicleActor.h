@@ -35,6 +35,14 @@ private:
 	float loadProgress = 0;
 	float loadDuration = 0;
 
+	//Location Related
+	FVector Direction;
+
+	float TotalDistance;
+	float currDistance;
+
+	FVector StartLocation;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

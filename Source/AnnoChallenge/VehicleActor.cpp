@@ -30,10 +30,17 @@ void AVehicleActor::Tick(float DeltaTime)
 		if(isLoading){
 			loadMaterials(DeltaTime);
 		}else{
-			if(this->GetActorLocation() == TargetBuilding->GetActorLocation()){
+			if(currDistance < TotalDistance){
+				FVector Location = this->GetActorLocation();
+				Location += Direction * VehicleSpeed * DeltaTime;
+				this->SetActorLocation(Location);
+
+				currDistance = (Location - StartLocation).Size();
+			}
+			else{
 				ClearDeliveryState();
 			}
-			this->SetActorLocation(TargetBuilding->GetActorLocation());
+		//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Orange, FString::Printf(TEXT("Distance from Goal %f"), TotalDistance-currDistance));
 		}
 	}
 }
@@ -105,7 +112,14 @@ void AVehicleActor::StartDeliveryState(AActor *Building, int32 matId, int32 &amt
 {
 	isDelivering = true;
 	isLoading = true;
-	TargetBuilding = Building;
 	GetMaterials(matId, amt);
 	loadDuration = FMath::RandRange(1.0f, 3.0f);
+
+	TargetBuilding = Building;
+	StartLocation = this->GetActorLocation();
+	Direction = TargetBuilding->GetActorLocation() - StartLocation;
+	TotalDistance = Direction.Size();
+
+	Direction = Direction.GetSafeNormal();
+	currDistance = 0.0f;
 }
