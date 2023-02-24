@@ -18,6 +18,9 @@ void ACoalMineActor::BeginPlay()
 	
 }
 
+/// @brief Inherited from BuildingActor. Only adds material held when progress goes equal or higher to duration
+/// @param DeltaTime 
+/// isProcessing becomes false afterwards
 void ACoalMineActor::processMaterial(float DeltaTime)
 {
 	Super::processMaterial(DeltaTime);
@@ -33,6 +36,7 @@ void ACoalMineActor::processMaterial(float DeltaTime)
 // Called every frame
 void ACoalMineActor::Tick(float DeltaTime)
 {
+	//Check for current mats held compared to max. Checks isProcessing to ensure it only processing one by one
 	if(coalHeld < maxInputMatsHeld && !isProcessing) isProcessing = true;
 
 	Super::Tick(DeltaTime);

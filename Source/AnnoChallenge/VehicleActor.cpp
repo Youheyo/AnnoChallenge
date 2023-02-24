@@ -38,6 +38,8 @@ void AVehicleActor::Tick(float DeltaTime)
 	}
 }
 
+/// @brief Starts and ends the loading state of the vehicle
+/// @param DeltaTime 
 void AVehicleActor::loadMaterials(float DeltaTime)
 {
 	loadProgress += DeltaTime * loadingSpeed;
@@ -46,6 +48,8 @@ void AVehicleActor::loadMaterials(float DeltaTime)
 	}
 }
 
+///Vehicle gets materials from the Building that called it
+///Asks for materialId (matId) and amount being given then gives back the excess 
 void AVehicleActor::GetMaterials(int32 matId, int32 &amount)
 {
 	if(CheckLoad() > maxLoad){
@@ -75,21 +79,28 @@ void AVehicleActor::GetMaterials(int32 matId, int32 &amount)
 	amount = excess;
 }
 
+/// @brief Adds up the total resource held by Vehicle
+/// @return total of resources
 int AVehicleActor::CheckLoad(){
 	return coal + iron + steel + lumber; 
 }
 
+/// @brief Reset everything about delivery then go back to warehouse
 void AVehicleActor::ClearDeliveryState()
 {
 	isDelivering = false;
 	isLoading = false;
 	loadProgress = 0;
-	if(HomeBuilding != NULL)this->SetActorLocation(HomeBuilding->GetActorLocation());
-	TargetBuilding = HomeBuilding;
+	if(HomeBuilding != NULL){
+		this->SetActorLocation(HomeBuilding->GetActorLocation());
+		TargetBuilding = HomeBuilding;
+	}
 	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Orange, FString::Printf(TEXT("DELIVERY COMPLETE")));
 
 }
 
+///Initializes the states of the vehicle and a random loadDuration
+///Requests the target building, material id, and amount given
 void AVehicleActor::StartDeliveryState(AActor *Building, int32 matId, int32 &amt)
 {
 	isDelivering = true;

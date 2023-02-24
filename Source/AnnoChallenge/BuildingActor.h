@@ -32,6 +32,7 @@ protected:
 	UPROPERTY(EditAnywhere, Category="Building Property")
 	int32 maxOutputMatsHeld = 3;
 
+	///PROCESSING RELATED VALUES
 	virtual void processMaterial(float DeltaTime);
 	UFUNCTION(BlueprintCallable)
 	virtual void callVehicle(int32 matId, int32 &amount);

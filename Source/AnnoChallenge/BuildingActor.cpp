@@ -20,13 +20,13 @@ void ABuildingActor::BeginPlay()
 	
 }
 
+///Handles the processing timers
+///The check for isProcessing is done by the Tick() function
+///Whatever object inheriting this MUST UPDATE isProcessing bool
 void ABuildingActor::processMaterial(float DeltaTime)
 {
 	if(processProgress < processDuration){
 		processProgress += DeltaTime * processSpeed;
-	}else
-	{
-		isProcessing = false;
 	}
 }
 
@@ -35,20 +35,24 @@ void ABuildingActor::callVehicle(int32 matId, int32 &amount)
 	//UE_LOG(LogTemp, Display, TEXT("Calling Vehicle..."));
 		TArray<AActor*> VehiclesToFind;
 		AVehicleActor* vehicleActor = NULL;
+
+		///Get all VehicleActors in the world
 		if(UWorld* World = GetWorld()){
 			UGameplayStatics::GetAllActorsOfClass(GetWorld(), AVehicleActor::StaticClass(), VehiclesToFind);
 		}
-	
 
+		//Check for available Vehicle Actors
 		for(int i = 0; i < VehiclesToFind.Num(); i++){
 
 			if(!Cast<AVehicleActor>(VehiclesToFind[i])->isDelivering){
 				vehicleActor = Cast<AVehicleActor>(VehiclesToFind[i]);
 			}
 		}
+
+		//Initiate delivery if available 
+		//Teleports the available vehicle to the calling building
 		if(vehicleActor != NULL){
 
-			//AVehicleActor* vehicleActor = Cast<AVehicleActor>(Vehicle->GetComponentByClass(AVehicleActor::StaticClass()));
 			vehicleActor->StartDeliveryState(TargetBuilding, matId, amount);
 			UE_LOG(LogTemp, Display, TEXT("%s now holds %d materials"), *this->GetName(), amount);
 			vehicleActor->SetActorLocation(this->GetActorLocation());
