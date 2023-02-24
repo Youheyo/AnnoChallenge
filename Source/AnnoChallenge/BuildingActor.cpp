@@ -50,6 +50,7 @@ void ABuildingActor::callVehicle(int32 matId, int32 &amount)
 
 			//AVehicleActor* vehicleActor = Cast<AVehicleActor>(Vehicle->GetComponentByClass(AVehicleActor::StaticClass()));
 			vehicleActor->StartDeliveryState(TargetBuilding, matId, amount);
+			UE_LOG(LogTemp, Display, TEXT("%s now holds %d materials"), *this->GetName(), amount);
 			vehicleActor->SetActorLocation(this->GetActorLocation());
 		}
 }

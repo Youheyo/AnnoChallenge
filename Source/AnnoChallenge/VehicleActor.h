@@ -42,14 +42,16 @@ public:
 	float maxLoad = 4;
 
 	void loadMaterials(float DeltaTime);
-	int GetMaterials(int matId, int32 amount);
+	void GetMaterials(int32 matId, int32 &amount);
 
 
     void ClearDeliveryState();
-	void StartDeliveryState(AActor *Building, int32 matId, int32 amt);
+	void StartDeliveryState(AActor *Building, int32 matId, int32 &amt);
 
 	bool isDelivering = false;
 
 	AActor* TargetBuilding;
+	UPROPERTY(EditAnywhere, Category="Vehicle Properties")
+	AActor* HomeBuilding;
 
 };

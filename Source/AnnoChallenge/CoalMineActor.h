@@ -22,6 +22,7 @@ protected:
 
 	void processMaterial(float DeltaTime) override;
 private:
+	UPROPERTY(VisibleAnywhere)
 	int coalHeld = 0;
 
 public:	

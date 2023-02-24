@@ -17,6 +17,7 @@ AVehicleActor::AVehicleActor()
 void AVehicleActor::BeginPlay()
 {
 	Super::BeginPlay();
+	this->SetActorLocation(HomeBuilding->GetActorLocation());
 	
 }
 
@@ -45,17 +46,16 @@ void AVehicleActor::loadMaterials(float DeltaTime)
 	}
 }
 
-int AVehicleActor::GetMaterials(int32 matId, int32 amount)
+void AVehicleActor::GetMaterials(int32 matId, int32 &amount)
 {
 	if(CheckLoad() > maxLoad){
-		return amount;
+		return;
 	}
 	int excess = 0;
 	if(amount > maxLoad){
 		excess = amount - maxLoad;
-		amount -= excess;
 	}
-
+	UE_LOG(LogTemp, Display, TEXT("Received %d amount of materials"), amount);
 	switch(matId){
 		case 0:
 			coal += amount;
@@ -72,7 +72,7 @@ int AVehicleActor::GetMaterials(int32 matId, int32 amount)
 		default:
 			UE_LOG(LogTemp, Warning, TEXT("UNKNOWN MATERIAL NAME"));
 	}
-	return excess;
+	amount = excess;
 }
 
 int AVehicleActor::CheckLoad(){
@@ -84,11 +84,13 @@ void AVehicleActor::ClearDeliveryState()
 	isDelivering = false;
 	isLoading = false;
 	loadProgress = 0;
+	if(HomeBuilding != NULL)this->SetActorLocation(HomeBuilding->GetActorLocation());
+	TargetBuilding = HomeBuilding;
 	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Orange, FString::Printf(TEXT("DELIVERY COMPLETE")));
 
 }
 
-void AVehicleActor::StartDeliveryState(AActor *Building, int32 matId, int32 amt)
+void AVehicleActor::StartDeliveryState(AActor *Building, int32 matId, int32 &amt)
 {
 	isDelivering = true;
 	isLoading = true;
