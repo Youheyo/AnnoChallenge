@@ -57,6 +57,7 @@ void AVehicleActor::loadMaterials(float DeltaTime)
 
 ///Vehicle gets materials from the Building that called it
 ///Asks for materialId (matId) and amount being given then gives back the excess 
+/// Might remove matId since vehicle only has 1 Target and 1 Material Type
 void AVehicleActor::GetMaterials(int32 matId, int32 &amount)
 {
 	if(CheckLoad() > maxLoad){
@@ -66,7 +67,8 @@ void AVehicleActor::GetMaterials(int32 matId, int32 &amount)
 	if(amount > maxLoad){
 		excess = amount - maxLoad;
 	}
-	UE_LOG(LogTemp, Display, TEXT("Received %d amount of materials"), amount);
+	//UE_LOG(LogTemp, Display, TEXT("Received %d amount of materials"), amount);
+/// Replace to 1 statement if only 1 material is used
 	switch(matId){
 		case 0:
 			coal += amount;
@@ -88,6 +90,7 @@ void AVehicleActor::GetMaterials(int32 matId, int32 &amount)
 
 /// @brief Adds up the total resource held by Vehicle
 /// @return total of resources
+/// Might remove since vehicle only has 1 Target and 1 Material Type
 int AVehicleActor::CheckLoad(){
 	return coal + iron + steel + lumber; 
 }
@@ -102,7 +105,7 @@ void AVehicleActor::ClearDeliveryState()
 		this->SetActorLocation(HomeBuilding->GetActorLocation());
 		TargetBuilding = HomeBuilding;
 	}
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Orange, FString::Printf(TEXT("DELIVERY COMPLETE")));
+	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Orange, FString::Printf(TEXT("DELIVERY COMPLETE")));
 
 }
 

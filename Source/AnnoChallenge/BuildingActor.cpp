@@ -53,7 +53,7 @@ void ABuildingActor::callVehicle(int32 matId, int32 &amount)
 		//Teleports the available vehicle to the calling building
 		if(vehicleActor != NULL){
 
-			UE_LOG(LogTemp, Display, TEXT("%s now holds %d materials"), *this->GetName(), amount);
+			//UE_LOG(LogTemp, Display, TEXT("%s now holds %d materials"), *this->GetName(), amount);
 			vehicleActor->SetActorLocation(this->GetActorLocation());
 			vehicleActor->StartDeliveryState(TargetBuilding, matId, amount);
 		}
@@ -66,3 +66,7 @@ void ABuildingActor::Tick(float DeltaTime)
 	if(isProcessing) processMaterial(DeltaTime);
 }
 
+void ABuildingActor::ReceiveMaterials(int32 amount)
+{
+
+}
