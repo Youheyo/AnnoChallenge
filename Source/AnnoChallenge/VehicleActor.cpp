@@ -25,10 +25,14 @@ void AVehicleActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	if(isDelivering){
+		//UE_LOG(LogTemp, Display, TEXT("Loading Materials... %s"), (isLoading ? TEXT("In progress") : TEXT("COMPLETE!") ));
 		if(isLoading){
 			loadMaterials(DeltaTime);
 		}else{
-			this->SetActorLocation(this->GetActorLocation() + TargetBuilding->GetActorLocation() * DeltaTime * VehicleSpeed);
+			if(this->GetActorLocation() == TargetBuilding->GetActorLocation()){
+				ClearDeliveryState();
+			}
+			this->SetActorLocation(TargetBuilding->GetActorLocation());
 		}
 	}
 }
@@ -80,6 +84,8 @@ void AVehicleActor::ClearDeliveryState()
 	isDelivering = false;
 	isLoading = false;
 	loadProgress = 0;
+	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Orange, FString::Printf(TEXT("DELIVERY COMPLETE")));
+
 }
 
 void AVehicleActor::StartDeliveryState(AActor *Building, int32 matId, int32 amt)

@@ -32,17 +32,18 @@ void ABuildingActor::processMaterial(float DeltaTime)
 
 void ABuildingActor::callVehicle(int32 matId, int32 &amount)
 {
+	//UE_LOG(LogTemp, Display, TEXT("Calling Vehicle..."));
 		TArray<AActor*> VehiclesToFind;
-		//AActor* Vehicle;
 		AVehicleActor* vehicleActor = NULL;
 		if(UWorld* World = GetWorld()){
 			UGameplayStatics::GetAllActorsOfClass(GetWorld(), AVehicleActor::StaticClass(), VehiclesToFind);
 		}
-		
+	
+
 		for(int i = 0; i < VehiclesToFind.Num(); i++){
-			vehicleActor = Cast<AVehicleActor>(VehiclesToFind[i]->GetComponentByClass(AVehicleActor::StaticClass()));
-			if(vehicleActor != NULL && !vehicleActor->isDelivering){
-				break;
+
+			if(!Cast<AVehicleActor>(VehiclesToFind[i])->isDelivering){
+				vehicleActor = Cast<AVehicleActor>(VehiclesToFind[i]);
 			}
 		}
 		if(vehicleActor != NULL){

@@ -21,7 +21,7 @@ void ACoalMineActor::BeginPlay()
 void ACoalMineActor::processMaterial(float DeltaTime)
 {
 	Super::processMaterial(DeltaTime);
-	UE_LOG(LogTemp, Display,TEXT("Generating Coal... %f"), processProgress);
+	//UE_LOG(LogTemp, Display,TEXT("Generating Coal... %f"), processProgress);
 	if(processProgress >= processDuration){
 		processProgress = 0;
 		coalHeld++;
