@@ -3,6 +3,7 @@
 
 #include "VehicleActor.h"
 #include "Math/UnrealMathUtility.h"
+#include "BuildingActor.h"
 
 // Sets default values
 AVehicleActor::AVehicleActor()
@@ -29,7 +30,7 @@ void AVehicleActor::Tick(float DeltaTime)
 		//UE_LOG(LogTemp, Display, TEXT("Loading Materials... %s"), (isLoading ? TEXT("In progress") : TEXT("COMPLETE!") ));
 		if(isLoading){
 			loadMaterials(DeltaTime);
-		}else{
+		}else if(CheckLoad() != 0){
 			if(currDistance < TotalDistance){
 				FVector Location = this->GetActorLocation();
 				Location += Direction * VehicleSpeed * DeltaTime;
@@ -37,9 +38,20 @@ void AVehicleActor::Tick(float DeltaTime)
 
 				currDistance = (Location - StartLocation).Size();
 			}
+			
 			else{
+				//Vehicle only holds 1 type of material. Shouldn't be a problem but could be improved
+				int32 matId;
+				if(coal > 0) matId = 0;
+				else if(iron > 0) matId = 1;
+				else if(steel > 0) matId = 2;
+				else if(lumber > 0) matId = 3;
+
+				//Gives and dumps the extras for now
+				Cast<ABuildingActor>(TargetBuilding)->ReceiveMaterials(matId, CheckLoad());
 				ClearDeliveryState();
 			}
+			
 		//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Orange, FString::Printf(TEXT("Distance from Goal %f"), TotalDistance-currDistance));
 		}
 	}
@@ -52,6 +64,14 @@ void AVehicleActor::loadMaterials(float DeltaTime)
 	loadProgress += DeltaTime * loadingSpeed;
 	if(loadProgress > loadDuration) {
 		isLoading = false;
+	}
+	
+	if(!isLoading && CheckLoad() == 0){
+		isDelivering = false;
+		if(HomeBuilding != NULL){
+			this->SetActorLocation(HomeBuilding->GetActorLocation());
+			//TargetBuilding = HomeBuilding;
+		}
 	}
 }
 
@@ -98,13 +118,16 @@ int AVehicleActor::CheckLoad(){
 /// @brief Reset everything about delivery then go back to warehouse
 void AVehicleActor::ClearDeliveryState()
 {
-	isDelivering = false;
-	isLoading = false;
 	loadProgress = 0;
-	if(HomeBuilding != NULL){
-		this->SetActorLocation(HomeBuilding->GetActorLocation());
-		TargetBuilding = HomeBuilding;
-	}
+
+	coal = 0;
+	iron = 0;
+	steel = 0;
+	lumber = 0;
+
+	loadDuration = FMath::RandRange(1.0f, 3.0f);
+	loadMaterials(loadDuration);
+
 	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Orange, FString::Printf(TEXT("DELIVERY COMPLETE")));
 
 }
@@ -113,10 +136,6 @@ void AVehicleActor::ClearDeliveryState()
 ///Requests the target building, material id, and amount given
 void AVehicleActor::StartDeliveryState(AActor *Building, int32 matId, int32 &amt)
 {
-	isDelivering = true;
-	isLoading = true;
-	GetMaterials(matId, amt);
-	loadDuration = FMath::RandRange(1.0f, 3.0f);
 
 	TargetBuilding = Building;
 	StartLocation = this->GetActorLocation();
@@ -124,5 +143,11 @@ void AVehicleActor::StartDeliveryState(AActor *Building, int32 matId, int32 &amt
 	TotalDistance = Direction.Size();
 
 	Direction = Direction.GetSafeNormal();
+
+	isDelivering = true;
+	isLoading = true;
+	GetMaterials(matId, amt);
+	loadDuration = FMath::RandRange(1.0f, 3.0f);
+
 	currDistance = 0.0f;
 }

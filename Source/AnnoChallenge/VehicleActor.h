@@ -48,7 +48,14 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	//Material Count
-	float iron, coal, steel, lumber = 0;
+	UPROPERTY(VisibleAnywhere, Category="Vehicle Properties")
+	float iron = 0;
+	UPROPERTY(VisibleAnywhere, Category="Vehicle Properties")
+ 	float coal = 0;
+	UPROPERTY(VisibleAnywhere, Category="Vehicle Properties")
+ 	float lumber = 0;
+	UPROPERTY(VisibleAnywhere, Category="Vehicle Properties")
+ 	float steel = 0;
 	UPROPERTY(EditAnywhere, Category="Vehicle Properties")
 	float maxLoad = 4;
 
@@ -59,6 +66,7 @@ public:
 	void StartDeliveryState(AActor *Building, int32 matId, int32 &amt);
     void ClearDeliveryState();
 
+	UPROPERTY(VisibleAnywhere, Category="Vehicle Properties")
 	bool isDelivering = false;
 
 	//Actor Targets and Home

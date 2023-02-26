@@ -32,7 +32,7 @@ void ABuildingActor::processMaterial(float DeltaTime)
 
 void ABuildingActor::callVehicle(int32 matId, int32 &amount)
 {
-	//UE_LOG(LogTemp, Display, TEXT("Calling Vehicle..."));
+	//UE_LOG(LogTemp, Display, TEXT("%s is calling vehicle..."), *this->GetName());
 		TArray<AActor*> VehiclesToFind;
 		AVehicleActor* vehicleActor = NULL;
 
@@ -40,13 +40,16 @@ void ABuildingActor::callVehicle(int32 matId, int32 &amount)
 		if(UWorld* World = GetWorld()){
 			UGameplayStatics::GetAllActorsOfClass(GetWorld(), AVehicleActor::StaticClass(), VehiclesToFind);
 		}
-
+		
 		//Check for available Vehicle Actors
 		for(int i = 0; i < VehiclesToFind.Num(); i++){
-
-			if(!Cast<AVehicleActor>(VehiclesToFind[i])->isDelivering){
+			//UE_LOG(LogTemp, Display, TEXT("%s found in world"), *VehiclesToFind[i]->GetName());
+			if(Cast<AVehicleActor>(VehiclesToFind[i])->isDelivering == false){
 				vehicleActor = Cast<AVehicleActor>(VehiclesToFind[i]);
+				UE_LOG(LogTemp, Display, TEXT("%s is available to deliver"), *vehicleActor->GetName());
+				break;
 			}
+			
 		}
 
 		//Initiate delivery if available 
@@ -55,8 +58,10 @@ void ABuildingActor::callVehicle(int32 matId, int32 &amount)
 
 			//UE_LOG(LogTemp, Display, TEXT("%s now holds %d materials"), *this->GetName(), amount);
 			vehicleActor->SetActorLocation(this->GetActorLocation());
+			UE_LOG(LogTemp, Display, TEXT("%s gave %s %d materials"),*this->GetName(), *vehicleActor->GetName(), amount);
 			vehicleActor->StartDeliveryState(TargetBuilding, matId, amount);
 		}
+
 }
 
 // Called every frame
@@ -66,7 +71,7 @@ void ABuildingActor::Tick(float DeltaTime)
 	if(isProcessing) processMaterial(DeltaTime);
 }
 
-void ABuildingActor::ReceiveMaterials(int32 amount)
+void ABuildingActor::ReceiveMaterials(int32 matId ,int32 amount)
 {
-
+	
 }

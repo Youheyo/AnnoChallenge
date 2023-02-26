@@ -53,6 +53,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	virtual void ReceiveMaterials(int32 amount);
+	virtual void ReceiveMaterials(int32 matId, int32 amount);
 
 };
