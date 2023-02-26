@@ -67,11 +67,14 @@ void AVehicleActor::loadMaterials(float DeltaTime)
 	}
 	
 	if(!isLoading && CheckLoad() == 0){
+		
 		isDelivering = false;
 		if(HomeBuilding != NULL){
 			this->SetActorLocation(HomeBuilding->GetActorLocation());
 			//TargetBuilding = HomeBuilding;
 		}
+
+		loadProgress = 0;
 	}
 }
 
@@ -126,7 +129,7 @@ void AVehicleActor::ClearDeliveryState()
 	lumber = 0;
 
 	loadDuration = FMath::RandRange(1.0f, 3.0f);
-	loadMaterials(loadDuration);
+	isLoading = true;
 
 	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Orange, FString::Printf(TEXT("DELIVERY COMPLETE")));
 
