@@ -58,7 +58,7 @@ void ABuildingActor::callVehicle(int32 matId, int32 &amount)
 
 			//UE_LOG(LogTemp, Display, TEXT("%s now holds %d materials"), *this->GetName(), amount);
 			vehicleActor->SetActorLocation(this->GetActorLocation());
-			UE_LOG(LogTemp, Display, TEXT("%s gave %s %d materials"),*this->GetName(), *vehicleActor->GetName(), amount);
+			//UE_LOG(LogTemp, Display, TEXT("%s gave %s %d materials"),*this->GetName(), *vehicleActor->GetName(), amount);
 			vehicleActor->StartDeliveryState(TargetBuilding, matId, amount);
 		}
 
@@ -74,4 +74,10 @@ void ABuildingActor::Tick(float DeltaTime)
 void ABuildingActor::ReceiveMaterials(int32 matId ,int32 amount)
 {
 	
+}
+
+bool ABuildingActor::CanReceiveMats(int32 matId)
+{
+	if(this->TargetBuilding != NULL) return false;
+	return true;
 }

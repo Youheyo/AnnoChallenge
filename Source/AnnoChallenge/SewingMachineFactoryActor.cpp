@@ -59,3 +59,20 @@ void ASewingMachineFactoryActor::ReceiveMaterials(int32 matId, int32 amount)
 		break;
 	}
 }
+
+bool ASewingMachineFactoryActor::CanReceiveMats(int32 matId)
+{
+	switch(matId){
+		case 2:
+			if(steelHeld < maxInputMatsHeld)
+			return true;
+			break;
+		case 3:
+			if(lumberHeld < maxInputMatsHeld)
+			return true;
+			break;
+		default:
+		break;
+	}
+	return false;
+}

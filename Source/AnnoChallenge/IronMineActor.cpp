@@ -37,7 +37,7 @@ void AIronMineActor::Tick(float DeltaTime)
 	
 	Super::Tick(DeltaTime);
 
-	if(ironHeld > 0) callVehicle(IRON_MATERIAL, ironHeld);
+	if(ironHeld > 0 && Cast<ABuildingActor>(TargetBuilding)->CanReceiveMats(IRON_MATERIAL)) callVehicle(IRON_MATERIAL, ironHeld);
 
 }
 

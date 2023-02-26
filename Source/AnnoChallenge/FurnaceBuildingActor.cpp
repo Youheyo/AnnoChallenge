@@ -41,7 +41,7 @@ void AFurnaceBuildingActor::Tick(float DeltaTime)
 
 	Super::Tick(DeltaTime);
 
-	if(steelHeld > 0) callVehicle(STEEL_MATERIAL, steelHeld);
+	if(steelHeld > 0 && Cast<ABuildingActor>(TargetBuilding)->CanReceiveMats(STEEL_MATERIAL)) callVehicle(STEEL_MATERIAL, steelHeld);
 
 }
 
@@ -63,4 +63,20 @@ void AFurnaceBuildingActor::ReceiveMaterials(int32 matId, int32 amount)
 		default:
 		break;
 	}
+}
+
+bool AFurnaceBuildingActor::CanReceiveMats(int32 matId){
+	
+	switch(matId){
+			case 1:
+			if(ironHeld < maxInputMatsHeld)
+			return true;
+			break;
+		case 0:
+			if(coalHeld < maxInputMatsHeld)
+			return true;
+			break;
+	}
+	return false;
+
 }

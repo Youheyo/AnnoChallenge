@@ -41,5 +41,5 @@ void ACoalMineActor::Tick(float DeltaTime)
 
 	Super::Tick(DeltaTime);
 
-	if(coalHeld > 0) callVehicle(COAL_MATERIAL, coalHeld);
+	if(coalHeld > 0 && Cast<ABuildingActor>(TargetBuilding)->CanReceiveMats(COAL_MATERIAL)) callVehicle(COAL_MATERIAL, coalHeld);
 }

@@ -33,5 +33,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void ReceiveMaterials(int32 matId, int32 amount) override;
+	
+	virtual bool CanReceiveMats(int32 matId) override;
 
 };
