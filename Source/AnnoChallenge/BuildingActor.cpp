@@ -46,7 +46,7 @@ void ABuildingActor::callVehicle(int32 matId, int32 &amount)
 			//UE_LOG(LogTemp, Display, TEXT("%s found in world"), *VehiclesToFind[i]->GetName());
 			if(Cast<AVehicleActor>(VehiclesToFind[i])->isDelivering == false){
 				vehicleActor = Cast<AVehicleActor>(VehiclesToFind[i]);
-				UE_LOG(LogTemp, Display, TEXT("%s is available to deliver"), *vehicleActor->GetName());
+				//UE_LOG(LogTemp, Display, TEXT("%s is available to deliver"), *vehicleActor->GetName());
 				break;
 			}
 			
