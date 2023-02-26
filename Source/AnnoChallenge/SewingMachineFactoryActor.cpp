@@ -46,13 +46,17 @@ void ASewingMachineFactoryActor::ReceiveMaterials(int32 matId, int32 amount)
 	amount = FMath::Clamp(amount, 0, maxInputMatsHeld);
 	switch(matId){
 		case 2:
-			if(steelHeld < maxInputMatsHeld)
-			steelHeld += amount;
+			if(steelHeld < maxInputMatsHeld){
+				steelHeld += amount;
+				steelHeld = FMath::Clamp(steelHeld,0,maxInputMatsHeld);
+			}
 			else return;
 			break;
 		case 3:
-			if(lumberHeld < maxInputMatsHeld)
-			lumberHeld += amount;
+			if(lumberHeld < maxInputMatsHeld){
+				lumberHeld += amount;
+				lumberHeld = FMath::Clamp(lumberHeld,0,maxInputMatsHeld);
+			}
 			else return;
 			break;
 		default:

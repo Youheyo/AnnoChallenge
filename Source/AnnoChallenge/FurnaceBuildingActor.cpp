@@ -48,16 +48,19 @@ void AFurnaceBuildingActor::Tick(float DeltaTime)
 void AFurnaceBuildingActor::ReceiveMaterials(int32 matId, int32 amount)
 {
 
-	amount = FMath::Clamp(amount, 0, maxInputMatsHeld);
 	switch(matId){
 		case 1:
-			if(ironHeld < maxInputMatsHeld)
-			ironHeld += amount;
+			if(ironHeld < maxInputMatsHeld){
+				ironHeld += amount;
+				ironHeld = FMath::Clamp(ironHeld,0,maxInputMatsHeld);
+			}
 			else return;
 			break;
 		case 0:
-			if(coalHeld < maxInputMatsHeld)
-			coalHeld += amount;
+			if(coalHeld < maxInputMatsHeld){
+				coalHeld += amount;
+				coalHeld = FMath::Clamp(coalHeld,0,maxInputMatsHeld);
+			}
 			else return;
 			break;
 		default:
