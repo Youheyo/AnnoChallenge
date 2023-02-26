@@ -37,9 +37,13 @@ void AVehicleActor::Tick(float DeltaTime)
 				this->SetActorLocation(Location);
 
 				currDistance = (Location - StartLocation).Size();
+
+				timeTookForDelivery += DeltaTime;
 			}
 			
 			else{
+
+				GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Orange, FString::Printf(TEXT("Delivery Completed in %.2f seconds"), timeTookForDelivery));
 				//Vehicle only holds 1 type of material. Shouldn't be a problem but could be improved
 				int32 matId;
 				if(coal > 0) matId = 0;
@@ -122,6 +126,7 @@ int AVehicleActor::CheckLoad(){
 void AVehicleActor::ClearDeliveryState()
 {
 	loadProgress = 0;
+	timeTookForDelivery = 0;
 
 	coal = 0;
 	iron = 0;
@@ -143,9 +148,13 @@ void AVehicleActor::StartDeliveryState(AActor *Building, int32 matId, int32 &amt
 	TargetBuilding = Building;
 	StartLocation = this->GetActorLocation();
 	Direction = TargetBuilding->GetActorLocation() - StartLocation;
+
+	
 	TotalDistance = Direction.Size();
 
 	Direction = Direction.GetSafeNormal();
+
+	VehicleSpeed = TotalDistance / minDeliveryTime;
 
 	isDelivering = true;
 	isLoading = true;

@@ -23,9 +23,11 @@ private:
 	//Static Mesh of Vehicle
 	UPROPERTY(EditAnywhere) UStaticMeshComponent* Mesh;
 
-	//Vehicle Speed Value
+	//Vehicle Speed Related
 	UPROPERTY(EditAnywhere, Category="Vehicle Properties")
-	float VehicleSpeed = 10.0f;
+	float minDeliveryTime = 4.0f;
+	float VehicleSpeed = 1.0f;
+	float timeTookForDelivery = 0.0f;
 
 	//Material Loading Values
 	UPROPERTY(EditAnywhere, Category="Vehicle Properties")
