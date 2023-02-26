@@ -26,7 +26,7 @@ private:
 	//Vehicle Speed Related
 	UPROPERTY(EditAnywhere, Category="Vehicle Properties")
 	float minDeliveryTime = 4.0f;
-	float VehicleSpeed = 1.0f;
+	float VehicleSpeed = 10.0f;
 	float timeTookForDelivery = 0.0f;
 
 	//Material Loading Values
