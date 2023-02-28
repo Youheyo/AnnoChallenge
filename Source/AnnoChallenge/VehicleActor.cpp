@@ -43,7 +43,7 @@ void AVehicleActor::Tick(float DeltaTime)
 			
 			else{
 
-				GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Orange, FString::Printf(TEXT("Delivery Completed in %.2f seconds"), timeTookForDelivery));
+				//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Orange, FString::Printf(TEXT("Delivery Completed in %.2f seconds"), timeTookForDelivery));
 				//Vehicle only holds 1 type of material. Shouldn't be a problem but could be improved
 				int32 matId;
 				if(coal > 0) matId = 0;
