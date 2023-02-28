@@ -86,7 +86,7 @@ bool AFurnaceBuildingActor::CanReceiveMats(int32 matId){
 
 int AFurnaceBuildingActor::GetMaterialCount(int32 matId){
 	switch(matId){
-		scase 1:
+		case 1:
 			return ironHeld;
 			break;
 		case 0:
