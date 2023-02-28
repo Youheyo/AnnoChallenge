@@ -80,3 +80,18 @@ bool ASewingMachineFactoryActor::CanReceiveMats(int32 matId)
 	}
 	return false;
 }
+
+int ASewingMachineFactoryActor::GetMaterialCount(int32 matId){
+	switch(matId){
+		case 2:
+			return steelHeld;
+			break;
+		case 3:
+			return lumberHeld;
+			break;
+		default:
+			return sewingMachinesHeld;
+		break;
+	}
+	return -1;
+}

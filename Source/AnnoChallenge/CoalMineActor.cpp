@@ -43,3 +43,7 @@ void ACoalMineActor::Tick(float DeltaTime)
 
 	if(coalHeld > 0 && Cast<ABuildingActor>(TargetBuilding)->CanReceiveMats(COAL_MATERIAL)) callVehicle(COAL_MATERIAL, coalHeld);
 }
+
+int ACoalMineActor::GetMaterialCount(int32 matId){
+	return coalHeld;
+} 

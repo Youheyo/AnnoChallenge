@@ -61,8 +61,39 @@ void AVehicleActor::Tick(float DeltaTime)
 	}
 }
 
+float AVehicleActor::GetInventory(int32 matId)
+{
+	switch(matId){
+		case 0:
+			return coal;
+			break;
+		case 1:
+			return iron;
+			break;
+		case 2:
+			return steel;
+			break;
+		case 3:
+			return lumber;
+			break;
+		default:
+			UE_LOG(LogTemp, Warning, TEXT("UNKNOWN MATERIAL NAME"));
+			return -1;
+	}
+}
+
+int32 AVehicleActor::GetMatId()
+{
+		if(coal > 0) return 0;
+		else if(iron > 0) return 1;
+		else if(steel > 0) return 2;
+		else if(lumber > 0) return 3;
+
+		return -1;
+}
+
 /// @brief Starts and ends the loading state of the vehicle
-/// @param DeltaTime 
+/// @param DeltaTime
 void AVehicleActor::loadMaterials(float DeltaTime)
 {
 	loadProgress += DeltaTime * loadingSpeed;

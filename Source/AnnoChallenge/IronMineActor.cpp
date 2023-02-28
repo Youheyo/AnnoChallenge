@@ -41,3 +41,6 @@ void AIronMineActor::Tick(float DeltaTime)
 
 }
 
+int AIronMineActor::GetMaterialCount(int32 matId){
+	return ironHeld;
+}

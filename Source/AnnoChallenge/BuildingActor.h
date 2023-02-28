@@ -57,4 +57,6 @@ public:
 
 	virtual bool CanReceiveMats(int32 matId);
 
+	UFUNCTION(BlueprintCallable, Category="Building Materials")
+	virtual int GetMaterialCount(int32 matId);
 };

@@ -81,3 +81,8 @@ bool ABuildingActor::CanReceiveMats(int32 matId)
 	if(this->TargetBuilding != NULL) return false;
 	return true;
 }
+
+int ABuildingActor::GetMaterialCount(int32 matId)
+{
+    return 0;
+}

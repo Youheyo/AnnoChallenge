@@ -37,4 +37,5 @@ public:
 
 	virtual bool CanReceiveMats(int32 matId) override;
 
+    int GetMaterialCount(int32 matId) override;
 };

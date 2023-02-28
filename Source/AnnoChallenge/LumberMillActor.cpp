@@ -41,3 +41,6 @@ void ALumberMillActor::Tick(float DeltaTime)
 	if(lumberHeld > 0 && Cast<ABuildingActor>(TargetBuilding)->CanReceiveMats(LUMBER_MATERIAL)) callVehicle(LUMBER_MATERIAL, lumberHeld);
 }
 
+int ALumberMillActor::GetMaterialCount(int32 matId){
+	return lumberHeld;
+}

@@ -28,4 +28,5 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+    int GetMaterialCount(int32 matId) override;
 };

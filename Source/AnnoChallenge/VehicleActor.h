@@ -64,6 +64,11 @@ public:
 	UPROPERTY(EditAnywhere, Category="Vehicle Properties")
 	float maxLoad = 4;
 
+	UFUNCTION(BlueprintCallable, Category="Vehicle Inventory")
+	float GetInventory(int32 matId);
+	UFUNCTION(BlueprintCallable, Category="Vehicle Inventory")
+	int32 GetMatId();
+
 	//Delivery Related Functions
 	void loadMaterials(float DeltaTime);
 	void GetMaterials(int32 matId, int32 &amount);
