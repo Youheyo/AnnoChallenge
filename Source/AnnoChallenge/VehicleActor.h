@@ -36,6 +36,9 @@ private:
 	bool isLoading = false;
 	float loadProgress = 0;
 	float loadDuration = 0;
+	UPROPERTY(EditAnywhere, Category="Vehicle Properties")
+	float loadRange = 1.0f;
+
 
 	//Location Related
 	FVector Direction;

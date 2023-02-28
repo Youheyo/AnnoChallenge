@@ -133,7 +133,7 @@ void AVehicleActor::ClearDeliveryState()
 	steel = 0;
 	lumber = 0;
 
-	loadDuration = FMath::RandRange(1.0f, 3.0f);
+	loadDuration = FMath::RandRange(1.0f, loadRange);
 	isLoading = true;
 
 	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Orange, FString::Printf(TEXT("DELIVERY COMPLETE")));
