@@ -129,16 +129,16 @@ void AVehicleActor::GetMaterials(int32 matId, int32 &amount)
 /// Replace to 1 statement if only 1 material is used
 	switch(matId){
 		case 0:
-			coal += amount;
+			coal += amount - excess;
 			break;
 		case 1:
-			iron += amount;
+			iron += amount - excess;
 			break;
 		case 2:
-			steel += amount;
+			steel += amount - excess;
 			break;
 		case 3:
-			lumber += amount;
+			lumber += amount - excess;
 			break;
 		default:
 			UE_LOG(LogTemp, Warning, TEXT("UNKNOWN MATERIAL NAME"));
