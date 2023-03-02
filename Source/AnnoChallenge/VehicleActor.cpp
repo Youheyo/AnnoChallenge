@@ -190,7 +190,7 @@ void AVehicleActor::StartDeliveryState(AActor *Building, int32 matId, int32 &amt
 	isDelivering = true;
 	isLoading = true;
 	GetMaterials(matId, amt);
-	loadDuration = FMath::RandRange(1.0f, 3.0f);
+	loadDuration = FMath::RandRange(1.0f, loadRange);
 
 	currDistance = 0.0f;
 }
